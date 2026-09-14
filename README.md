@@ -24,6 +24,17 @@ Full explanation of each category, sources, and known limitations are in the in-
 
 It does not determine authorship. No published method reliably proves a specific passage was AI-written once a human has reviewed or lightly edited it. This is a triage aid — it points an editor at passages worth a second look, not a verdict.
 
+## Scoring Rubric
+
+The tool calculates a normalized density score:
+$$\text{Score} = \left(\frac{\text{Total Flagged Items}}{\text{Total Words}}\right) \times 1,000$$
+
+| Band | Threshold | Meaning |
+|---|---|---|
+| **LOW** | `< 3.0` flags / 1k words | Baseline human writing with natural vocabulary variety and varied sentence cadence. Sparse, organic signals. |
+| **MODERATE** | `3.0 – 7.9` flags / 1k words | Noticeable clusters of formulaic transitions, softening pleasantries, or stylistic punctuation. Common in business emails, institutional memos, or lightly edited AI drafts. |
+| **HIGH** | `8.0+` flags / 1k words | Heavy saturation of flagged patterns (1 flag every ~70–120 words). Unedited LLM output routinely scores 10–25+. High-oratory historical prose (such as the Declaration of Independence at 14.2) also trips this threshold due to dense rhetorical triads and double-hyphen pause punctuation. |
+
 ## Files
 
 - `index.html` — the entire application (HTML/CSS/vanilla JS, no build step, no dependencies)

@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented here and mirrored in the in-app Help & About modal.
 
+## [1.3.0] - 2026-09-14
+
+### Added
+- Interactive Scoring Rubric breakdown bar directly in the Results panel displaying the three density bands: Low (<3.0), Moderate (3.0–7.9), and High (8.0+), with real-time active band highlighting.
+- In-app threshold explanation drawer explaining the mathematical formula (`[Total Flags / Word Count] * 1,000`) and the characteristics of each band.
+- Comprehensive Rubric and Declaration of Independence case-study documentation in the Help & About modal explaining why historical oratory scores 14.2 (High) and how density triage differs from authorship detection.
+
+### Changed
+- Default sample text updated to the official National Archives Stone Engraving transcription of the Declaration of Independence (1,335 words).
+
 ## [1.2.0] - 2026-09-14
 
 ### Fixed
