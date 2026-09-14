@@ -73,6 +73,10 @@ The file is fully self-contained (no external font or script loads), so it can b
 - The lexical and phrase lists reflect patterns documented as of late 2025 / 2026 and will go stale as specific words fall in and out of fashion. Revisit periodically rather than treating the lists as fixed.
 - Text-only. There is no equivalent check for AI-generated images.
 
-## Origin
+## Origin & Sources
 
-Built out of a working reference on documented AI writing and image "tells," compiled from PubMed/arXiv word-frequency studies and 2026 AI-image-detection field guides. The v1.1.0 corporate-email category and rule-of-three fix were both driven by a real test: a 100% AI-generated staff email scored "Moderate" under v1.0.0 but tripped only one flag (an em dash) because the original lists were built for academic/fiction prose. See `CHANGELOG.md` for details.
+Built out of a working reference on documented AI writing and image "tells," based on:
+- [The AI Tells Nobody Agrees On (and the Ones They Do)](https://assuredinformation.blogspot.com/2026/09/the-ai-tells-nobody-agrees-on-and-ones.html) — Core reference on documented LLM lexical spikes, corporate email filler, em-dash tokenizer economics, and rhetorical tricolon overlap.
+- Longitudinal PubMed & arXiv word-frequency studies (2024–2026) comparing pre/post-ChatGPT vocabulary trends.
+- Tokenizer token-economy analyses (GPT-3.5 vs. GPT-4/4o em dash frequencies).
+- National Archives Stone Engraving transcription of the Declaration of Independence (historical oratory baseline).

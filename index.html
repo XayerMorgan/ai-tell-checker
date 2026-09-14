@@ -450,7 +450,12 @@
   </div>
 
   <footer>
-    <span>AI Tell Checker <span id="versionTagFooter"></span> &mdash; client-side only, no data leaves this page.</span>
+    <div>
+      <span>AI Tell Checker <span id="versionTagFooter"></span> &mdash; client-side only, no data leaves this page.</span>
+      <div style="margin-top:5px;font-size:11.5px;color:var(--ink-dim);">
+        Source &amp; Reference: <a href="https://assuredinformation.blogspot.com/2026/09/the-ai-tells-nobody-agrees-on-and-ones.html" target="_blank" rel="noopener noreferrer">The AI Tells Nobody Agrees On (and the Ones They Do)</a>
+      </div>
+    </div>
     <a id="helpLink">How is AI certainty calculated? Sources &amp; changelog &rarr;</a>
   </footer>
 </div>
@@ -527,6 +532,15 @@
       <dd>Excessive bold/italic formatting on standard statements.</dd>
     </dl>
 
+    <h3>Sources &amp; Reference</h3>
+    <p>This tool and its heuristic categorization are based on:</p>
+    <ul>
+      <li><a href="https://assuredinformation.blogspot.com/2026/09/the-ai-tells-nobody-agrees-on-and-ones.html" target="_blank" rel="noopener noreferrer" style="color:var(--amber);font-weight:600;">The AI Tells Nobody Agrees On (and the Ones They Do)</a> &mdash; Analysis of documented LLM lexical frequency spikes, corporate pleasantry registers, tokenizer em-dash bias, and classical rhetorical triad overlap.</li>
+      <li>Longitudinal PubMed &amp; arXiv post-ChatGPT word-frequency studies (2024–2026).</li>
+      <li>LLM tokenizer token-economy analyses (GPT-3.5 vs. GPT-4/4o em dash frequency).</li>
+      <li>National Archives Stone Engraving transcription of the Declaration of Independence (historical oratory calibration baseline).</li>
+    </ul>
+
     <h3>Version &amp; changelog</h3>
     <div id="changelogList"></div>
   </div>
@@ -546,7 +560,8 @@ const CHANGELOG = [
       "Introduced AI Likelihood / Certainty percentage (0–100%) with Low, Uncertain, and High Probability bands.",
       "Categorized all 8 signals into 3 diagnostic tiers: Tier 1 (Stock AI & Corporate filler @ 4.0x), Tier 2 (Lexical & Hedging @ 2.0x), Tier 3 (Rhetorical triads, Em dashes, Contrast, Markdown @ 0.5–1.0x).",
       "Added multi-signal corroboration factor (C) that dampens single-signal spikes (preventing false alarms on classical oratory like the Declaration of Independence) and amplifies multi-category AI saturation.",
-      "Added interactive calculation drawer breaking down the exact mathematical formula, weighted points, and active category multipliers."
+      "Added interactive calculation drawer breaking down the exact mathematical formula, weighted points, and active category multipliers.",
+      "Added reference citations to 'The AI Tells Nobody Agrees On (and the Ones They Do)' across the footer, Help modal, and documentation."
     ]
   },
   {
@@ -868,7 +883,7 @@ function analyze(){
     div.innerHTML =
       "<div class=\"cat-head\">" +
         "<div class=\"cat-name-box\">" +
-          "<span class=\"cat-name\">" + escapeHtml(c.name) + "</span>" +
+          "<span class=\"cat-name">" + escapeHtml(c.name) + "</span>" +
           "<span class=\"tier-tag " + tierClass + "\">" + c.tier + " &bull; " + c.weight + "x</span>" +
         "</div>" +
         "<div class=\"cat-count" + (c.hits.length > 0 ? " flag" : "") + "\">" + c.hits.length + "</div>" +
