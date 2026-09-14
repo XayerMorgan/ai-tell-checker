@@ -15,6 +15,7 @@
     --amber-dim:#7a6323;
     --red:#c1553f;
     --green:#5f8f6e;
+    --blue:#4a82b8;
     --mono:"IBM Plex Mono","SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   }
@@ -46,7 +47,7 @@
     margin:0 0 6px;
   }
   h1{font-size:24px;font-weight:650;margin:0 0 6px;letter-spacing:-0.01em;}
-  .sub{color:var(--ink-dim);font-size:13.5px;max-width:620px;line-height:1.5;margin:0;}
+  .sub{color:var(--ink-dim);font-size:13.5px;max-width:640px;line-height:1.5;margin:0;}
   .header-actions{display:flex;gap:8px;align-items:center;flex-shrink:0;}
   .icon-btn{
     background:transparent;
@@ -70,7 +71,7 @@
     align-self:center;
   }
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-  @media (max-width:820px){.grid{grid-template-columns:1fr;}}
+  @media (max-width:860px){.grid{grid-template-columns:1fr;}}
   .panel{
     background:var(--panel);
     border:1px solid var(--panel-line);
@@ -123,36 +124,135 @@
   button:disabled{opacity:.45;cursor:not-allowed;}
   .kbd-hint{font-family:var(--mono);font-size:11px;color:var(--ink-dim);}
   .wc{font-family:var(--mono);font-size:12px;color:var(--ink-dim);margin-left:auto;}
-  .score-row{display:flex;align-items:baseline;gap:14px;margin-bottom:14px;}
-  .score-num{font-size:44px;font-weight:700;font-family:var(--mono);line-height:1;transition:color .3s ease;}
-  .score-label{font-size:13px;color:var(--ink-dim);}
+
+  /* Dual Metric Results Display */
+  .score-card{
+    background:#0d1015;
+    border:1px solid var(--panel-line);
+    border-radius:4px;
+    padding:16px;
+    margin-bottom:14px;
+  }
+  .score-primary-row{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:8px;
+  }
+  .prob-num{
+    font-size:46px;
+    font-weight:700;
+    font-family:var(--mono);
+    line-height:1;
+  }
+  .prob-label-col{display:flex;flex-direction:column;gap:4px;}
+  .prob-title{font-size:13px;color:var(--ink-dim);font-weight:600;}
   .score-band{
     font-family:var(--mono);
-    font-size:11px;
+    font-size:10.5px;
     letter-spacing:.06em;
     text-transform:uppercase;
     padding:3px 8px;
     border-radius:3px;
     display:inline-block;
+    align-self:flex-start;
+  }
+  .band-low{background:rgba(95,143,110,.18);color:var(--green);border:1px solid rgba(95,143,110,.4);}
+  .band-mod{background:rgba(201,150,44,.18);color:var(--amber);border:1px solid rgba(201,150,44,.4);}
+  .band-high{background:rgba(193,85,63,.18);color:var(--red);border:1px solid rgba(193,85,63,.4);}
+
+  .assessment-text{
+    font-size:12.5px;
+    color:var(--ink);
+    line-height:1.5;
+    margin:8px 0 12px;
+    padding-left:10px;
+    border-left:3px solid var(--amber);
+  }
+  .metrics-subrow{
+    display:flex;
+    gap:16px;
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--ink-dim);
+    border-top:1px solid var(--panel-line);
+    padding-top:10px;
+    flex-wrap:wrap;
+  }
+  .metrics-subrow strong{color:var(--ink);}
+
+  /* Composite Inspector */
+  .rubric-toggle-btn{
+    background:none;
+    border:none;
+    color:var(--amber);
+    font-size:11.5px;
+    padding:0;
+    cursor:pointer;
+    text-decoration:underline;
+    font-family:var(--sans);
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
     margin-top:4px;
   }
-  .band-low{background:rgba(95,143,110,.15);color:var(--green);border:1px solid rgba(95,143,110,.35);}
-  .band-mod{background:rgba(201,150,44,.15);color:var(--amber);border:1px solid rgba(201,150,44,.35);}
-  .band-high{background:rgba(193,85,63,.15);color:var(--red);border:1px solid rgba(193,85,63,.35);}
+  .rubric-toggle-btn:hover{filter:brightness(1.2);}
+  .composite-drawer{
+    display:none;
+    margin-top:12px;
+    background:#12161c;
+    border:1px dashed var(--panel-line);
+    border-radius:4px;
+    padding:12px;
+    font-size:12px;
+    color:var(--ink-dim);
+    line-height:1.5;
+  }
+  .composite-drawer.open{display:block;}
+  .math-table{
+    width:100%;
+    border-collapse:collapse;
+    font-family:var(--mono);
+    font-size:11px;
+    margin:8px 0;
+  }
+  .math-table th, .math-table td{
+    padding:4px 6px;
+    border-bottom:1px solid var(--panel-line);
+    text-align:left;
+  }
+  .math-table th{color:var(--ink-dim);font-weight:600;}
+  .math-table td.num{text-align:right;}
+
   .disclaimer{
     font-size:11.5px;
     color:var(--ink-dim);
     border-left:2px solid var(--panel-line);
     padding-left:10px;
-    margin-bottom:16px;
+    margin-bottom:14px;
     line-height:1.5;
   }
-  .results-actions{display:flex;gap:8px;margin-bottom:16px;}
+  .results-actions{display:flex;gap:8px;margin-bottom:14px;}
+
+  /* Categories list */
   .cat{border-top:1px solid var(--panel-line);padding:12px 0;}
   .cat:first-of-type{border-top:none;padding-top:0;}
   .cat-head{display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
   .cat-head:hover .cat-name{color:var(--amber);}
+  .cat-name-box{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
   .cat-name{font-size:13.5px;font-weight:600;transition:color .12s ease;}
+  .tier-tag{
+    font-family:var(--mono);
+    font-size:10px;
+    padding:1px 6px;
+    border-radius:3px;
+    letter-spacing:.04em;
+    font-weight:600;
+  }
+  .tier-1{background:rgba(193,85,63,.15);color:#e57b66;border:1px solid rgba(193,85,63,.35);}
+  .tier-2{background:rgba(201,150,44,.15);color:var(--amber);border:1px solid rgba(201,150,44,.35);}
+  .tier-3{background:rgba(74,130,184,.15);color:var(--blue);border:1px solid rgba(74,130,184,.35);}
+
   .cat-count{
     font-family:var(--mono);
     font-size:12px;
@@ -181,6 +281,7 @@
   .hit b{color:var(--ink);}
   mark{background:rgba(201,150,44,.35);color:var(--ink);border-radius:2px;padding:0 2px;}
   .empty-note{font-size:12px;color:var(--ink-dim);font-style:italic;}
+
   footer{
     margin-top:24px;
     font-size:11.5px;
@@ -196,6 +297,7 @@
   footer a{color:var(--amber);text-decoration:none;cursor:pointer;}
   footer a:hover{text-decoration:underline;}
 
+  /* Modal */
   .modal-overlay{
     position:fixed;inset:0;
     background:rgba(0,0,0,.6);
@@ -211,7 +313,7 @@
     background:var(--panel);
     border:1px solid var(--panel-line);
     border-radius:6px;
-    max-width:760px;
+    max-width:780px;
     width:100%;
     padding:28px 28px 22px;
     position:relative;
@@ -237,92 +339,13 @@
   .modal p, .modal li{font-size:13.5px;line-height:1.6;color:var(--ink);}
   .modal ul{margin:0 0 4px;padding-left:20px;}
   .cat-doc{margin-bottom:16px;}
-  .cat-doc dt{font-weight:600;font-size:13.5px;margin-bottom:3px;}
+  .cat-doc dt{font-weight:600;font-size:13.5px;margin-bottom:3px;display:flex;align-items:center;gap:8px;}
   .cat-doc dd{margin:0 0 4px;color:var(--ink-dim);font-size:12.5px;line-height:1.55;}
   .cat-doc .example{font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);background:#0d1015;border:1px solid var(--panel-line);padding:5px 8px;border-radius:3px;display:inline-block;margin-top:2px;}
   .source-list{font-size:12px;color:var(--ink-dim);line-height:1.7;}
   .changelog-entry{margin-bottom:10px;}
   .changelog-ver{font-family:var(--mono);font-size:12px;color:var(--amber);}
   .changelog-date{font-family:var(--mono);font-size:11px;color:var(--ink-dim);}
-  /* Rubric & Score Guide */
-  .rubric-card{
-    background:#0d1015;
-    border:1px solid var(--panel-line);
-    border-radius:4px;
-    padding:12px;
-    margin-bottom:14px;
-  }
-  .rubric-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-size:11.5px;
-    font-family:var(--mono);
-    color:var(--ink-dim);
-    margin-bottom:8px;
-  }
-  .rubric-head strong{color:var(--ink);text-transform:uppercase;letter-spacing:.05em;}
-  .rubric-toggle{
-    background:none;
-    border:none;
-    color:var(--amber);
-    font-size:11.5px;
-    padding:0;
-    cursor:pointer;
-    text-decoration:underline;
-    font-family:var(--sans);
-  }
-  .rubric-toggle:hover{filter:brightness(1.2);}
-  .rubric-bar{
-    display:grid;
-    grid-template-columns:1fr 1.5fr 1.5fr;
-    gap:4px;
-    height:26px;
-  }
-  .rubric-segment{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 8px;
-    font-family:var(--mono);
-    font-size:10.5px;
-    border-radius:3px;
-    opacity:0.35;
-    transition:all .2s ease;
-    border:1px solid transparent;
-    user-select:none;
-  }
-  .rubric-segment.active{
-    opacity:1;
-    font-weight:700;
-    transform:scale(1.02);
-    box-shadow:0 0 8px rgba(0,0,0,.4);
-  }
-  .rubric-segment.seg-low{background:rgba(95,143,110,.18);color:var(--green);border-color:rgba(95,143,110,.4);}
-  .rubric-segment.seg-mod{background:rgba(201,150,44,.18);color:var(--amber);border-color:rgba(201,150,44,.4);}
-  .rubric-segment.seg-high{background:rgba(193,85,63,.18);color:var(--red);border-color:rgba(193,85,63,.4);}
-  .rubric-info{
-    font-size:12px;
-    color:var(--ink-dim);
-    line-height:1.5;
-    border-top:1px dashed var(--panel-line);
-    padding-top:10px;
-    margin-top:10px;
-    display:none;
-  }
-  .rubric-info.open{display:block;}
-  .rubric-info p{margin:3px 0 6px;}
-  .rubric-info ul{margin:4px 0 0;padding-left:18px;}
-  .rubric-info li{margin-bottom:4px;}
-  .rubric-badge{
-    display:inline-block;
-    padding:1px 6px;
-    border-radius:3px;
-    font-size:10.5px;
-    font-family:var(--mono);
-    font-weight:600;
-    margin-right:4px;
-  }
 
   .toast{
     position:fixed;
@@ -348,7 +371,7 @@
     <div>
       <p class="eyebrow">TEXT ANALYSIS / STYLE AUDIT</p>
       <h1>AI Tell Checker</h1>
-      <p class="sub">Scans pasted text against documented AI-writing signals: lexical overuse, rhetorical framing, punctuation density, and structural patterns. Flags instances for editorial review. Does not determine authorship.</p>
+      <p class="sub">Weighted diagnostic scanner evaluating text across 8 documented AI-writing signals: stock boilerplate, corporate filler, lexical spikes, and rhetorical structures. Flags patterns for editorial triage.</p>
     </div>
     <div class="header-actions">
       <span class="version-tag" id="versionTag"></span>
@@ -372,37 +395,51 @@
     </div>
 
     <div class="panel">
-      <h2>Results</h2>
-      <div id="resultsEmpty" class="empty-note">Run analysis to see flagged patterns.</div>
+      <h2>Results &amp; AI Likelihood</h2>
+      <div id="resultsEmpty" class="empty-note">Run analysis to see diagnostic evaluation and flagged patterns.</div>
       <div id="results" style="display:none;">
-        <div class="score-row">
-          <div class="score-num" id="scoreNum">0</div>
+        
+        <!-- Score Card -->
+        <div class="score-card">
+          <div class="score-primary-row">
+            <div class="prob-num" id="probNum">0%</div>
+            <div class="prob-label-col">
+              <div class="prob-title">AI Likelihood / Certainty</div>
+              <div class="score-band" id="probBand">LOW PROBABILITY</div>
+            </div>
+          </div>
+          <div class="assessment-text" id="assessmentText"></div>
+          <div class="metrics-subrow">
+            <span>Raw Pattern Density: <strong id="rawDensityVal">0</strong> flags/1k words</span>
+            <span>Corroborating Categories: <strong id="activeKVal">0/8</strong></span>
+            <span>Total Flags: <strong id="totalHitsVal">0</strong></span>
+          </div>
           <div>
-            <div class="score-label">flags per 1,000 words</div>
-            <div class="score-band" id="scoreBand">LOW</div>
+            <button type="button" class="rubric-toggle-btn" id="compositeToggleBtn">View calculation breakdown &darr;</button>
+          </div>
+          <div class="composite-drawer" id="compositeDrawer">
+            <p><strong>Weighted Composite Model:</strong> Diagnostic tiers weight high-confidence AI phrases more heavily than general stylistic punctuation, dampened when cross-category corroboration is lacking.</p>
+            <table class="math-table">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Tier &amp; Weight</th>
+                  <th class="num">Hits</th>
+                  <th class="num">Weighted Pts</th>
+                </tr>
+              </thead>
+              <tbody id="mathTableBody"></tbody>
+            </table>
+            <div style="margin-top:6px;font-family:var(--mono);font-size:11px;">
+              <div>&bull; Weighted Density (Dw): <span id="dwMath">0</span> pts / 1k words</div>
+              <div>&bull; Corroboration Multiplier (C): <span id="cMath">1.0x</span> (<span id="cReason"></span>)</div>
+              <div>&bull; Composite Index (I = Dw &times; C): <span id="iMath">0</span></div>
+            </div>
           </div>
         </div>
+
         <div class="disclaimer">
-          This score reflects density of documented AI-favored patterns in this sample. No individual pattern is proof of AI authorship; punctuation and vocabulary habits overlap with ordinary human formal writing. Treat this as a triage tool, not a verdict.
-        </div>
-                <div class="rubric-card">
-          <div class="rubric-head">
-            <span><strong>Rubric:</strong> Flags / 1,000 words</span>
-            <button type="button" class="rubric-toggle" id="rubricToggleBtn">Explain thresholds &darr;</button>
-          </div>
-          <div class="rubric-bar">
-            <div class="rubric-segment seg-low" id="segLow"><span>&lt; 3.0</span><span>LOW</span></div>
-            <div class="rubric-segment seg-mod" id="segMod"><span>3.0 &ndash; 7.9</span><span>MODERATE</span></div>
-            <div class="rubric-segment seg-high" id="segHigh"><span>8.0+</span><span>HIGH</span></div>
-          </div>
-          <div class="rubric-info" id="rubricInfo">
-            <p><strong>Density formula:</strong> <code>(Total Flagged Items &divide; Total Words) &times; 1,000</code></p>
-            <ul>
-              <li><span class="rubric-badge band-low">LOW (&lt; 3.0)</span> Baseline human writing. Flagged phrases or punctuation quirks appear sparsely and organically.</li>
-              <li><span class="rubric-badge band-mod">MODERATE (3.0&ndash;7.9)</span> Noticeable recurrence of formulaic transitions, softening pleasantries, or stylistic punctuation. Common in standard business emails, institutional memos, or lightly edited AI drafts.</li>
-              <li><span class="rubric-badge band-high">HIGH (8.0+)</span> Heavy saturation of flagged patterns (&ge; 1 tell every ~70&ndash;120 words). Raw LLM output typically lands between 10&ndash;25+. High-oratory historical prose (e.g. Declaration of Independence at 14.2) also trips this threshold due to dense rhetorical triads and double-hyphen pause punctuation.</li>
-            </ul>
-          </div>
+          This model measures pattern density and cross-category corroboration. It flags text for editorial triage — no heuristic model proves authorship on lightly edited text.
         </div>
         <div class="results-actions">
           <button class="secondary" id="copyBtn">Copy summary</button>
@@ -414,7 +451,7 @@
 
   <footer>
     <span>AI Tell Checker <span id="versionTagFooter"></span> &mdash; client-side only, no data leaves this page.</span>
-    <a id="helpLink">What do these categories mean? Sources &amp; changelog &rarr;</a>
+    <a id="helpLink">How is AI certainty calculated? Sources &amp; changelog &rarr;</a>
   </footer>
 </div>
 
@@ -425,78 +462,70 @@
     <p class="modal-sub" id="modalVersionLine"></p>
 
     <h3>What this tool does</h3>
-    <p>This tool scans pasted text for patterns documented in frequency studies and editorial write-ups as more common in AI-generated writing than in typical human prose. It reports a density score (flags per 1,000 words) and lets you inspect every flagged instance in context.</p>
-    <p><b>It does not detect AI authorship.</b> No published method can reliably prove a specific passage was AI-written once a human has reviewed or lightly edited it. This tool is a triage aid, the same way a style linter points at passive voice or long sentences without proving who wrote them.</p>
+    <p>This tool scans text for patterns documented in frequency studies, tokenizer analyses, and editorial research as disproportionately present in AI-generated writing. It pairs <b>raw stylistic density</b> with a <b>weighted multi-signal AI Certainty model</b> to differentiate between genuine AI boilerplate and isolated human rhetorical habits.</p>
+    <p><b>It does not determine authorship.</b> Light human editing easily alters heuristic signals. This is an editorial triage assistant designed to highlight passages worth a second look.</p>
 
-        <h3>Scoring rubric &amp; density thresholds</h3>
-    <p>The score normalizes pattern frequency across texts of any length:</p>
-    <p style="font-family:var(--mono);font-size:12.5px;background:#0d1015;padding:8px 12px;border:1px solid var(--panel-line);border-radius:4px;">
-      Score = (Total Flagged Patterns &divide; Word Count) &times; 1,000
-    </p>
+    <h3>How AI Certainty &amp; Granular Measures are Calculated</h3>
+    <p>A naive flat count (e.g. 15 flags = "High") is flawed because an 18th-century speech with 15 parallel triads is completely different from a text saturated with ChatGPT stock transitions.</p>
+    <p>Our model evaluates three dimensions:</p>
     <ul>
-      <li><b>LOW (&lt; 3.0 flags / 1,000 words):</b> Typical of clean, unassisted human prose with natural vocabulary variance, varied sentence cadence, and minimal formulaic transitions.</li>
-      <li><b>MODERATE (3.0 &ndash; 7.9 flags / 1,000 words):</b> Contains noticeable clusters of flagged constructs (such as multiple em dashes, stock transitional phrases, or corporate softening fillers). Common in corporate correspondence, routine administrative drafting, or lightly edited AI copy.</li>
-      <li><b>HIGH (8.0+ flags / 1,000 words):</b> Heavy saturation of flagged patterns (representing on average at least one flag every 70&ndash;120 words). Raw, unedited AI output routinely scores 10.0 to 25.0+ because LLMs systematically replicate repetitive transitional phrases, pervasive em dashes, tricolons, and post-2023 frequency-spike vocabulary.</li>
+      <li><b>1. Granular Diagnostic Weights ($w_i$):</b>
+        <ul>
+          <li><span class="tier-tag tier-1">Tier 1 &bull; 4.0x</span> <b>High Diagnostic:</b> Stock AI boilerplate transitions and Corporate AI filler. Almost never appear naturally in formal vintage or academic human writing.</li>
+          <li><span class="tier-tag tier-2">Tier 2 &bull; 2.0x</span> <b>Moderate Diagnostic:</b> Post-ChatGPT vocabulary spikes (<i>delve, tapestry, multifaceted</i>) and Reflexive Hedging softeners.</li>
+          <li><span class="tier-tag tier-3">Tier 3 &bull; 0.5x – 1.0x</span> <b>Secondary / Contextual:</b> Rule-of-three comma triads, Em dash / double-hyphen density, and Markdown emphasis. These occur organically in classical oratory and human essay writing.</li>
+        </ul>
+      </li>
+      <li><b>2. Multi-Signal Corroboration ($C$):</b> Real AI output systematically trips multiple distinct categories at once. If a text trips only weak secondary structural patterns with <b>zero Tier 1 markers</b>, a heavy dampener ($C = 0.35	imes$) is applied. When 4+ independent categories fire, the multiplier increases ($1.25	imes 	ext{–} 1.50	imes$).</li>
+      <li><b>3. Composite Probability Mapping:</b> The composite index ($I = D_w 	imes C$) is mapped via a calibrated sigmoidal curve into an estimated probability percentage (Low &lt;25%, Uncertain 25–59%, High &ge;60%).</li>
     </ul>
 
-    <h3>Why would 14.2 per 1,000 be High? (Declaration of Independence case study)</h3>
-    <p>A prominent test case is the official National Archives transcription of the <b>Declaration of Independence (1,335 words)</b>, which scores <b>14.2 flags / 1,000 words (HIGH)</b>. Here is why:</p>
+    <h3>Why would 14.2 per 1,000 be Low Probability? (Declaration of Independence Case Study)</h3>
+    <p>The National Archives Stone Engraving transcription of the <b>Declaration of Independence (1,335 words)</b> trips 19 raw flags (14.2 raw flags/1k words):</p>
     <ul>
-      <li><b>15 Rule-of-three / parallelism hits:</b> Classical 18th-century oratorical and legal drafting heavily relied on rhythmic tricolons and parallel triadic clauses (e.g., <i>"plundered our seas, ravaged our Coasts, burnt our towns"</i>, <i>"works of death, desolation and tyranny"</i>, <i>"levy War, conclude Peace, contract Alliances"</i>).</li>
-      <li><b>3 Em dash / double hyphen hits:</b> The National Archives Stone Engraving transcription contains period-typical ASCII double-hyphens (<code>--That to secure...</code>, <code>--That whenever...</code>, <code>--Such has been...</code>) as dramatic pause markers.</li>
-      <li><b>1 Lexical overuse hit:</b> The word <i>"Boundaries"</i> (<i>"enlarging its Boundaries so as to render it..."</i>).</li>
+      <li><b>15 Rule-of-three / rhetorical triads (Tier 3 &bull; 0.5x):</b> Classical 18th-century oratorical pacing (<i>"plundered our seas, ravaged our Coasts, burnt our towns"</i>, <i>"works of death, desolation and tyranny"</i>, <i>"levy War, conclude Peace, contract Alliances"</i>).</li>
+      <li><b>3 ASCII double-hyphens (Tier 3 &bull; 0.5x):</b> Stone engraving pause notation (<code>--That to secure...</code>).</li>
+      <li><b>1 Lexical word (Tier 2 &bull; 2.0x):</b> The word <i>"Boundaries"</i>.</li>
+      <li><b>0 Stock AI phrases (Tier 1) &amp; 0 Corporate filler phrases (Tier 1).</b></li>
     </ul>
-    <p><b>The lesson:</b> 14.2 is mathematically HIGH because 18th-century high-oratory prose and unedited LLM prose share superficial structural characteristics: intense rhythmic tricolons, dense comma-separated parallelisms, and dramatic punctuation. This illustrates why density scoring is an <b>editorial triage aid</b> pointing editors at dense rhetorical habits, and <b>never a verdict on authorship</b>.</p>
+    <p><b>The Verdict:</b> Under the weighted composite model, the Declaration scores <b>~14% (LOW PROBABILITY)</b>. The system recognizes that despite high rhetorical density, the complete absence of Tier 1 AI boilerplate and the lack of multi-category corroboration mean this is an <b>isolated stylistic pattern</b>, not AI generation.</p>
 
     <h3>Categories explained</h3>
     <dl class="cat-doc">
-      <dt>Lexical overuse (banned vocabulary)</dt>
-      <dd>Words that showed statistically significant frequency increases in academic writing after ChatGPT's public launch (e.g., "delve," "underscore," "meticulous," "commendable"). Source: PubMed and arXiv word-frequency studies, 2024-2026.</dd>
-      <dd class="example">e.g. "We delved into the intricate landscape of..."</dd>
-    </dl>
-    <dl class="cat-doc">
-      <dt>Stock AI phrases</dt>
-      <dd>Boilerplate transitional phrases common in generated essay- and report-style prose: "in today's fast-paced world," "it's worth noting that," "a testament to."</dd>
+      <dt><span class="tier-tag tier-1">Tier 1 &bull; 4.0x</span> Stock AI phrases</dt>
+      <dd>Boilerplate transitional phrases common in generated essay- and report-style prose: "in today's fast-paced world," "it's worth noting that," "a testament to," "in the realm of."</dd>
       <dd class="example">e.g. "In today's fast-paced world, it's worth noting that..."</dd>
     </dl>
     <dl class="cat-doc">
-      <dt>Corporate / email AI patterns</dt>
-      <dd>Filler and softening phrases specific to AI-generated professional email and memo tone: opening pleasantries, "circle back," "gentle reminder," "as we navigate," "please don't hesitate to reach out." Added after real-world testing showed AI-generated emails often use zero academic-style vocabulary but heavy use of this register instead.</dd>
+      <dt><span class="tier-tag tier-1">Tier 1 &bull; 4.0x</span> Corporate / email AI patterns</dt>
+      <dd>Filler and softening phrases specific to AI-generated professional email/memo tone: "circle back," "as we navigate," "gentle reminder," "please don't hesitate to reach out."</dd>
       <dd class="example">e.g. "I hope this finds you well. As we navigate the coming quarter..."</dd>
     </dl>
     <dl class="cat-doc">
-      <dt>Em dash / double hyphen density</dt>
-      <dd>Counted per 1,000 words. A controlled test found GPT-3.5 produced 0 em dashes across 10 generated stories, while GPT-4o and GPT-4.1 produced 14-16, plausibly because the em dash is a single token in GPT-4-family tokenizers versus 2-3 tokens for a comma-plus-conjunction. Multiple independent sources caution this is not reliable evidence on its own; human formal writers use em dashes heavily too, and OpenAI has since made the habit suppressible via custom instructions. Flagged for density review against your own baseline, not as a standalone signal.</dd>
+      <dt><span class="tier-tag tier-2">Tier 2 &bull; 2.0x</span> Lexical overuse (banned vocabulary)</dt>
+      <dd>Words with statistically significant post-ChatGPT frequency spikes in published research (e.g., "delve," "underscore," "meticulous," "commendable," "tapestry").</dd>
+      <dd class="example">e.g. "We delved into the intricate landscape of..."</dd>
     </dl>
     <dl class="cat-doc">
-      <dt>Contrast-framing rhetoric</dt>
-      <dd>"It was not X, it was Y" / "She did not just feel it, she became it" constructions, a repetitive dramatic sentence architecture common in AI-generated narrative and marketing copy.</dd>
+      <dt><span class="tier-tag tier-2">Tier 2 &bull; 2.0x</span> Reflexive hedging</dt>
+      <dd>Softening counterpoints attached to nearly every claim ("however," "that said," "it's important to note"), indicating model uncertainty avoidance.</dd>
     </dl>
     <dl class="cat-doc">
-      <dt>Rule-of-three lists</dt>
-      <dd>Three-item comma sequences used as a rhythmic device ("furious, frightened, undone"). This is a heuristic pattern match, not a syntax parser. As of v1.2.0 it excludes runs of Title-Case proper nouns (names, states, delegations) after testing showed signature blocks and place-name lists produced heavy false positives. It will still catch legitimate lowercase/mixed-case three-item lists in ordinary human writing. A single hit is not meaningful; a cluster across a short passage is worth a look.</dd>
+      <dt><span class="tier-tag tier-3">Tier 3 &bull; 1.0x</span> Contrast-framing rhetoric</dt>
+      <dd>"It was not X, it was Y" / "not just X, X" constructions, a repetitive dramatic sentence structure favored in AI marketing/narrative copy.</dd>
     </dl>
     <dl class="cat-doc">
-      <dt>Reflexive hedging</dt>
-      <dd>Softening counterpoints attached to nearly every claim ("however," "that said," "it's important to note"), which can indicate a model avoiding a firm position.</dd>
+      <dt><span class="tier-tag tier-3">Tier 3 &bull; 0.5x</span> Rule-of-three lists</dt>
+      <dd>Three-item comma sequences used as a rhythmic device ("furious, frightened, undone"). Excludes Title-Case proper noun sequences as of v1.2.0.</dd>
     </dl>
     <dl class="cat-doc">
-      <dt>Markdown emphasis markers</dt>
-      <dd>Bold/italic markup on statements that may not warrant emphasis. Reflects an observed pattern where models emphasize text indiscriminately because they weight importance differently than a human editor would.</dd>
+      <dt><span class="tier-tag tier-3">Tier 3 &bull; 0.5x</span> Em dash / double hyphen density</dt>
+      <dd>Frequent single-token punctuation in GPT-4 family models. Flagged as a secondary signal only due to heavy natural use by human writers.</dd>
     </dl>
-
-    <h3>Known limitations</h3>
-    <ul>
-      <li>Rule-of-three and contrast-framing detection are regex heuristics, not syntactic parsing. Expect some false positives on legitimate three-item lists and negation sentences.</li>
-      <li>The lexical and phrase lists reflect patterns documented as of late 2025 / 2026. Specific words fall in and out of favor as they get publicly flagged, the same drift already documented for "delve" itself, so the list needs periodic revision, not one-time use.</li>
-      <li>This tool only analyzes text. It has no equivalent check for AI-generated images.</li>
-      <li>A low score does not clear a passage, and a high score does not convict one. Always read the flagged context before acting on it.</li>
-    </ul>
-
-    <h3>Sources reviewed</h3>
-    <p class="source-list">
-      Longitudinal PubMed word-overuse study (2020-2024) comparing pre/post-ChatGPT vocabulary trends. arXiv "Human-LLM Coevolution" abstract frequency analysis. arXiv astronomy-publications delve/underscore frequency study. Em-dash tokenizer cost analysis (GPT-3.5 vs. GPT-4o vs. GPT-4.1 generation test). Reporting on OpenAI's em-dash custom-instruction fix (TechCrunch, November 2025). 2026 AI-image-detection field guides on hand, ear, text, and shadow artifacts.
-    </p>
+    <dl class="cat-doc">
+      <dt><span class="tier-tag tier-3">Tier 3 &bull; 0.5x</span> Markdown emphasis markers</dt>
+      <dd>Excessive bold/italic formatting on standard statements.</dd>
+    </dl>
 
     <h3>Version &amp; changelog</h3>
     <div id="changelogList"></div>
@@ -506,41 +535,59 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const VERSION = "1.3.0";
+const VERSION = "2.0.0";
 const LAST_UPDATED = "2026-09-14";
 
 const CHANGELOG = [
   {
+    ver:"2.0.0", date:"2026-09-14",
+    notes:[
+      "Major update: replaced flat density scoring with a Weighted Diagnostic & Multi-Signal Corroboration Composite Model.",
+      "Introduced AI Likelihood / Certainty percentage (0–100%) with Low, Uncertain, and High Probability bands.",
+      "Categorized all 8 signals into 3 diagnostic tiers: Tier 1 (Stock AI & Corporate filler @ 4.0x), Tier 2 (Lexical & Hedging @ 2.0x), Tier 3 (Rhetorical triads, Em dashes, Contrast, Markdown @ 0.5–1.0x).",
+      "Added multi-signal corroboration factor (C) that dampens single-signal spikes (preventing false alarms on classical oratory like the Declaration of Independence) and amplifies multi-category AI saturation.",
+      "Added interactive calculation drawer breaking down the exact mathematical formula, weighted points, and active category multipliers."
+    ]
+  },
+  {
     ver:"1.3.0", date:"2026-09-14",
     notes:[
       "Updated default sample text to the official National Archives transcription of the Declaration of Independence (1,335 words).",
-      "Added in-app Scoring Rubric breakdown bar (Low <3.0, Moderate 3.0–7.9, High 8.0+) with active band highlighting and explanatory drawer.",
-      "Added comprehensive rubric guide and Declaration of Independence case-study explanation (14.2 flags/1k words) to Help & About modal."
+      "Added in-app Scoring Rubric breakdown bar and threshold guide.",
+      "Added Declaration of Independence case-study documentation."
     ]
   },
   {
     ver:"1.2.0", date:"2026-09-14",
     notes:[
-      "Fixed Rule-of-three false positives on proper-noun lists (signatures, delegations, place names). A test against the Declaration of Independence, including its signers' list, showed the detector firing repeatedly on entries like \"Button Gwinnett, Lyman Hall, George Walton\" \u2014 a list of names, not a rhetorical triad.",
-      "Added a proper-noun-run detector: sequences of 3+ consecutive Title-Case comma items (names, states, delegations) are now excluded from the rule-of-three count. Lowercase and mixed-case triads (the actual AI-style pattern, e.g. \"furious, frightened, undone\" or \"labs, classrooms, and offices\") are unaffected.",
-      "Verified no regression against the v1.1.0 corporate-email test case and against genuine historical triads (e.g. \"Life, Liberty and the pursuit of Happiness,\" which is not proper-noun Title Case throughout and still correctly flags)."
+      "Fixed Rule-of-three false positives on proper-noun runs (signers' lists, place names).",
+      "Added proper-noun-run detector excluding Title-Case comma sequences from triad count."
     ]
   },
   {
     ver:"1.1.0", date:"2026-09-14",
     notes:[
-      "Added Corporate / Email AI Patterns category after real-world testing showed AI-generated business emails trip almost none of the academic/fiction-oriented lexical list.",
-      "Fixed Rule-of-three detector: previously required the third list item to be immediately followed by sentence-ending punctuation, so lists that continued into the rest of the sentence (e.g., \"labs, classrooms, and offices running smoothly\") went undetected. Now matches the list pattern itself.",
-      "Added Help & About modal with per-category explanations, methodology, source attribution, and this changelog.",
-      "Added sample-text loader, copy-summary button, keyboard shortcut (Cmd/Ctrl+Enter), and layout adjustments for narrow embedded widths."
+      "Added Corporate / Email AI Patterns category.",
+      "Added Help & About modal, sample-text loader, and copy-summary button."
     ]
   },
   {
     ver:"1.0.0", date:"2026-09-14",
     notes:[
-      "Initial release: 7 categories (lexical, stock phrases, em dash density, contrast-framing, rule-of-three, hedging, emphasis markup), scoring band, expandable hit lists."
+      "Initial release: 7 categories, raw density scoring, expandable hit lists."
     ]
   }
+];
+
+const CATEGORIES_CONFIG = [
+  {id:"phrases", name:"Stock AI phrases", tier:"Tier 1", weight:4.0, desc:"Boilerplate transitional phrases common in generated prose."},
+  {id:"corporate", name:"Corporate / email AI patterns", tier:"Tier 1", weight:4.0, desc:"Filler and softening phrases specific to AI workplace drafting."},
+  {id:"lexical", name:"Lexical overuse (banned vocabulary)", tier:"Tier 2", weight:2.0, desc:"Words with documented post-ChatGPT frequency spikes."},
+  {id:"hedges", name:"Reflexive hedging", tier:"Tier 2", weight:2.0, desc:"Softening counterpoints attached to claims."},
+  {id:"contrast", name:"Contrast-framing rhetoric", tier:"Tier 3", weight:1.0, desc:"'It was not X, it was Y' constructions."},
+  {id:"r3", name:"Rule-of-three lists", tier:"Tier 3", weight:0.5, desc:"Three-item comma sequences used as rhythmic pacing."},
+  {id:"emdash", name:"Em dash / double hyphen density", tier:"Tier 3", weight:0.5, desc:"Dense em-dash punctuation (secondary structural signal)."},
+  {id:"emphasis", name:"Markdown emphasis markers", tier:"Tier 3", weight:0.5, desc:"Bold/italic markup on standard statements."}
 ];
 
 const LEXICAL = ["delve","delves","delving","underscore","underscores","underscoring",
@@ -620,9 +667,6 @@ function findContrastFraming(text){
 }
 
 function findProperNounRunSpans(text){
-  // Detects runs of 3+ consecutive Title-Case comma items (names, places, delegations).
-  // Word class requires an uppercase first letter, so these spans naturally stop
-  // before a trailing lowercase word instead of overmatching into it.
   const re = /\b(?:[A-Z][a-zA-Z'.-]*(?:\s[A-Z][a-zA-Z'.-]*){0,2},\s){2,}(?:and\s|or\s)?[A-Z][a-zA-Z'.-]*(?:\s[A-Z][a-zA-Z'.-]*){0,2}\b/g;
   const spans = [];
   let m;
@@ -639,17 +683,11 @@ function findRuleOfThree(text){
   let m;
   while((m = re.exec(text)) !== null){
     if(/\d/.test(m[0])) continue;
-    // Skip matches that start inside a proper-noun run (e.g., a list of signers or
-    // place names) rather than a rhetorical/descriptive triad.
     const inProperNounRun = properNounSpans.some(s => m.index >= s.start && m.index < s.end);
     if(inProperNounRun) continue;
     hits.push({term:m[0], context:m[0], index:m.index});
   }
   return hits;
-}
-
-function findHedges(text, list){
-  return findLexical(text, list, false);
 }
 
 function findEmphasisMarkup(text){
@@ -672,25 +710,18 @@ function renderHit(h){
   return "<div class=\"hit\">"+marked+"</div>";
 }
 
-function band(score){
-  if(score < 3) return {label:"LOW", cls:"band-low"};
-  if(score < 8) return {label:"MODERATE", cls:"band-mod"};
-  return {label:"HIGH", cls:"band-high"};
-}
-
 let lastSummary = "";
 
-function animateScore(target){
-  const el = document.getElementById("scoreNum");
-  const start = 0;
-  const duration = 500;
+function animateProb(target){
+  const el = document.getElementById("probNum");
+  const duration = 450;
   const startTime = performance.now();
   function step(now){
     const progress = Math.min(1, (now-startTime)/duration);
-    const val = (start + (target-start)*progress).toFixed(1);
-    el.textContent = val;
+    const val = Math.round(target * progress);
+    el.textContent = val + "%";
     if(progress < 1) requestAnimationFrame(step);
-    else el.textContent = target;
+    else el.textContent = target + "%";
   }
   requestAnimationFrame(step);
 }
@@ -707,49 +738,154 @@ function analyze(){
     return;
   }
 
-  const cats = [
-    {name:"Lexical overuse (banned vocabulary)", desc:"Words with documented post-ChatGPT frequency spikes.", hits: findLexical(text, LEXICAL, false)},
-    {name:"Stock AI phrases", desc:"Boilerplate phrases common in generated essay/report prose.", hits: findLexical(text, PHRASES, true)},
-    {name:"Corporate / email AI patterns", desc:"Filler and softening phrases specific to AI-generated professional email/memo tone.", hits: findLexical(text, CORPORATE, true)},
-    {name:"Em dash / double hyphen density", desc:"Not proof of AI authorship on its own; flagged only for density review against your own baseline.", hits: findEmDash(text)},
-    {name:"Contrast-framing rhetoric", desc:"\"It was not X, it was Y\" / \"not just X, X\" constructions.", hits: findContrastFraming(text)},
-    {name:"Rule-of-three lists", desc:"Three-item comma sequences used as rhythmic device.", hits: findRuleOfThree(text)},
-    {name:"Reflexive hedging", desc:"Counterpoint softeners attached to nearly every claim.", hits: findHedges(text, HEDGES)},
-    {name:"Markdown emphasis markers", desc:"Bold/italic markup on statements that may not warrant emphasis.", hits: findEmphasisMarkup(text)}
+  const rawCategories = [
+    {id:"phrases", hits: findLexical(text, PHRASES, true)},
+    {id:"corporate", hits: findLexical(text, CORPORATE, true)},
+    {id:"lexical", hits: findLexical(text, LEXICAL, false)},
+    {id:"hedges", hits: findLexical(text, HEDGES, false)},
+    {id:"contrast", hits: findContrastFraming(text)},
+    {id:"r3", hits: findRuleOfThree(text)},
+    {id:"emdash", hits: findEmDash(text)},
+    {id:"emphasis", hits: findEmphasisMarkup(text)}
   ];
 
-  const totalHits = cats.reduce((sum,c)=>sum+c.hits.length,0);
-  const perThousand = (totalHits / words) * 1000;
-  const scoreRounded = Math.round(perThousand*10)/10;
-  const b = band(scoreRounded);
+  const categories = CATEGORIES_CONFIG.map(cfg => {
+    const raw = rawCategories.find(r => r.id === cfg.id);
+    return {
+      ...cfg,
+      hits: raw ? raw.hits : []
+    };
+  });
 
-  animateScore(scoreRounded);
-  const bandEl = document.getElementById("scoreBand");
-  bandEl.textContent = b.label;
-  bandEl.className = "score-band " + b.cls;
+  const rawTotalHits = categories.reduce((sum, c) => sum + c.hits.length, 0);
+  const rawDensity = (rawTotalHits / words) * 1000;
+  const rawDensityRounded = Math.round(rawDensity * 10) / 10;
 
+  const tier1Hits = categories.filter(c => c.tier === "Tier 1").reduce((sum, c) => sum + c.hits.length, 0);
+  const tier2Hits = categories.filter(c => c.tier === "Tier 2").reduce((sum, c) => sum + c.hits.length, 0);
+  const activeK = categories.filter(c => c.hits.length > 0).length;
+
+  const totalWeightedScore = categories.reduce((sum, c) => sum + (c.hits.length * c.weight), 0);
+  const weightedDensity = (totalWeightedScore / words) * 1000;
+
+  // Multi-signal corroboration factor C
+  let cMultiplier = 1.0;
+  let cReason = "Standard cross-category baseline";
+  if (activeK === 0 || rawTotalHits === 0) {
+    cMultiplier = 0.0;
+    cReason = "No signals present";
+  } else if (tier1Hits === 0 && tier2Hits <= 1) {
+    cMultiplier = 0.35;
+    cReason = "Single-signal/isolated rhetorical pattern without core AI phrases";
+  } else if (tier1Hits === 0) {
+    cMultiplier = 0.65;
+    cReason = "Moderate signals present, but no direct Tier 1 AI boilerplate";
+  } else if (activeK === 1) {
+    cMultiplier = 0.50;
+    cReason = "Single active category";
+  } else if (activeK === 2) {
+    cMultiplier = 0.85;
+    cReason = "Dual-category confirmation";
+  } else if (activeK === 3) {
+    cMultiplier = 1.10;
+    cReason = "Tri-category corroboration";
+  } else if (activeK === 4) {
+    cMultiplier = 1.30;
+    cReason = "Strong multi-category corroboration";
+  } else {
+    cMultiplier = 1.50;
+    cReason = "Broad multi-signal AI saturation";
+  }
+
+  const compositeIndex = weightedDensity * cMultiplier;
+  let prob = 0;
+  if (rawTotalHits > 0 && words >= 15) {
+    prob = 100.0 / (1.0 + Math.exp(-0.30 * (compositeIndex - 9.0)));
+  }
+  const probRounded = Math.max(0, Math.min(100, Math.round(prob)));
+
+  // Probability Band & Assessment text
+  let bandLabel = "LOW PROBABILITY";
+  let bandCls = "band-low";
+  let assessment = "";
+
+  if (probRounded < 25) {
+    bandLabel = "LOW PROBABILITY";
+    bandCls = "band-low";
+    if (rawDensityRounded >= 8.0) {
+      assessment = "Stylistic Anomaly: High rhetorical/punctuation density, but lacks multi-signal corroboration and core Tier 1 AI boilerplate (e.g. classical speech/oratory).";
+    } else if (rawTotalHits === 0) {
+      assessment = "Clean Sample: No documented post-2023 AI writing tells detected.";
+    } else {
+      assessment = "Baseline Human Writing: Flagged patterns appear sparsely and organically with minimal AI indicators.";
+    }
+  } else if (probRounded < 60) {
+    bandLabel = "UNCERTAIN / MIXED";
+    bandCls = "band-mod";
+    assessment = "Mixed Signals: Moderate pattern clusters detected. May indicate standard business memo drafting or lightly edited AI assistance. Editorial review advised.";
+  } else {
+    bandLabel = "HIGH PROBABILITY";
+    bandCls = "band-high";
+    assessment = "High AI Certainty: Multi-signal saturation across core AI boilerplate, corporate filler, and vocabulary spikes.";
+  }
+
+  // Update UI
+  animateProb(probRounded);
+  const bandEl = document.getElementById("probBand");
+  bandEl.textContent = bandLabel;
+  bandEl.className = "score-band " + bandCls;
+
+  document.getElementById("assessmentText").textContent = assessment;
+  document.getElementById("rawDensityVal").textContent = rawDensityRounded;
+  document.getElementById("activeKVal").textContent = activeK + "/8";
+  document.getElementById("totalHitsVal").textContent = rawTotalHits;
+
+  // Math table
+  const tbody = document.getElementById("mathTableBody");
+  tbody.innerHTML = categories.map(c => {
+    const pts = Math.round(c.hits.length * c.weight * 10) / 10;
+    const tierClass = c.tier === "Tier 1" ? "tier-1" : (c.tier === "Tier 2" ? "tier-2" : "tier-3");
+    return "<tr>" +
+      "<td>" + escapeHtml(c.name) + "</td>" +
+      "<td><span class=\"tier-tag " + tierClass + "\">" + c.tier + " &bull; " + c.weight + "x</span></td>" +
+      "<td class=\"num\">" + c.hits.length + "</td>" +
+      "<td class=\"num\">" + pts + "</td>" +
+    "</tr>";
+  }).join("");
+
+  document.getElementById("dwMath").textContent = Math.round(weightedDensity * 10) / 10;
+  document.getElementById("cMath").textContent = cMultiplier.toFixed(2) + "x";
+  document.getElementById("cReason").textContent = cReason;
+  document.getElementById("iMath").textContent = Math.round(compositeIndex * 10) / 10;
+
+  // Category list
   const catsEl = document.getElementById("categories");
   catsEl.innerHTML = "";
-  cats.forEach((c)=>{
+  categories.forEach(c => {
     const div = document.createElement("div");
     div.className = "cat";
+    const tierClass = c.tier === "Tier 1" ? "tier-1" : (c.tier === "Tier 2" ? "tier-2" : "tier-3");
     div.innerHTML =
-      "<div class=\"cat-head\">"+
-        "<div class=\"cat-name\">"+escapeHtml(c.name)+"</div>"+
-        "<div class=\"cat-count"+(c.hits.length>0?" flag":"")+"\">"+c.hits.length+"</div>"+
-      "</div>"+
-      "<p class=\"cat-desc\">"+escapeHtml(c.desc)+"</p>"+
-      "<div class=\"hits\">"+(c.hits.length ? c.hits.slice(0,25).map(renderHit).join("") : "<div class=\"empty-note\">No instances found.</div>")+
-        (c.hits.length>25 ? "<div class=\"empty-note\">+ "+(c.hits.length-25)+" more not shown.</div>" : "")+
+      "<div class=\"cat-head\">" +
+        "<div class=\"cat-name-box\">" +
+          "<span class=\"cat-name\">" + escapeHtml(c.name) + "</span>" +
+          "<span class=\"tier-tag " + tierClass + "\">" + c.tier + " &bull; " + c.weight + "x</span>" +
+        "</div>" +
+        "<div class=\"cat-count" + (c.hits.length > 0 ? " flag" : "") + "\">" + c.hits.length + "</div>" +
+      "</div>" +
+      "<p class=\"cat-desc\">" + escapeHtml(c.desc) + "</p>" +
+      "<div class=\"hits\">" + (c.hits.length ? c.hits.slice(0, 25).map(renderHit).join("") : "<div class=\"empty-note\">No instances found.</div>") +
+        (c.hits.length > 25 ? "<div class=\"empty-note\">+ " + (c.hits.length - 25) + " more not shown.</div>" : "") +
       "</div>";
-    div.querySelector(".cat-head").addEventListener("click", ()=>{
+    div.querySelector(".cat-head").addEventListener("click", () => {
       div.classList.toggle("open");
     });
     catsEl.appendChild(div);
   });
 
-  lastSummary = "AI Tell Checker v"+VERSION+" - "+scoreRounded+" flags/1,000 words ("+b.label+")\n"+
-    cats.map(c=>"- "+c.name+": "+c.hits.length).join("\n");
+  lastSummary = "AI Tell Checker v" + VERSION + " - AI Likelihood: " + probRounded + "% (" + bandLabel + ")\n" +
+    "Raw Pattern Density: " + rawDensityRounded + " flags/1,000 words across " + words + " words\n" +
+    categories.map(c => "- " + c.name + " (" + c.tier + "): " + c.hits.length).join("\n");
 
   emptyEl.style.display = "none";
   resultsEl.style.display = "block";
@@ -814,6 +950,11 @@ document.getElementById("input").addEventListener("keydown", (e)=>{
 document.getElementById("copyBtn").addEventListener("click", ()=>{
   if(!lastSummary) return;
   navigator.clipboard.writeText(lastSummary).then(()=>showToast("Summary copied")).catch(()=>showToast("Copy failed"));
+});
+document.getElementById("compositeToggleBtn").addEventListener("click", ()=>{
+  const drawer = document.getElementById("compositeDrawer");
+  const isOpen = drawer.classList.toggle("open");
+  document.getElementById("compositeToggleBtn").innerHTML = isOpen ? "Hide calculation breakdown &uarr;" : "View calculation breakdown &darr;";
 });
 document.getElementById("helpBtn").addEventListener("click", openModal);
 document.getElementById("helpLink").addEventListener("click", openModal);

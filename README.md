@@ -24,16 +24,29 @@ Full explanation of each category, sources, and known limitations are in the in-
 
 It does not determine authorship. No published method reliably proves a specific passage was AI-written once a human has reviewed or lightly edited it. This is a triage aid — it points an editor at passages worth a second look, not a verdict.
 
-## Scoring Rubric
+## Granular Diagnostic Measures & Signal Tiers
 
-The tool calculates a normalized density score:
-$$\text{Score} = \left(\frac{\text{Total Flagged Items}}{\text{Total Words}}\right) \times 1,000$$
+Categories are weighted by diagnostic precision:
 
-| Band | Threshold | Meaning |
+| Tier | Weight | Category | Rationale |
+|---|:---:|---|---|
+| **Tier 1 (High Diagnostic)** | **4.0x** | Stock AI Phrases, Corporate / Email Filler | Hallmark boilerplate formulas almost never found naturally in formal vintage or academic writing. |
+| **Tier 2 (Moderate Diagnostic)** | **2.0x** | Lexical Overuse (PubMed/arXiv spike words), Reflexive Hedging | Post-ChatGPT statistical vocabulary surges and neutrality avoidance markers. |
+| **Tier 3 (Secondary / Structural)** | **0.5x – 1.0x** | Contrast Rhetoric (1.0x), Rule-of-three Triads (0.5x), Em Dash / Double Hyphen (0.5x), Markdown (0.5x) | Rhythmic and stylistic elements that occur naturally in classical human rhetoric and essay drafting. |
+
+## Multi-Signal Corroboration & Composite AI Likelihood
+
+To prevent single-signal false alarms (e.g. classical oratorical triads in historical speeches), the tool applies a **Multi-Signal Corroboration Multiplier ($C$)**:
+- **Single-Signal / Isolated Stylistic Spike (0 Tier 1 markers):** $C = 0.35\times$ (dampens false alarms).
+- **Multi-Category AI Saturation ($4+$ active categories):** $C = 1.30\times \text{–} 1.50\times$.
+
+The Composite Index ($I = D_w \times C$) is mapped to an **AI Likelihood / Certainty Percentage (0% – 100%)**:
+
+| Band | Probability Range | Meaning |
 |---|---|---|
-| **LOW** | `< 3.0` flags / 1k words | Baseline human writing with natural vocabulary variety and varied sentence cadence. Sparse, organic signals. |
-| **MODERATE** | `3.0 – 7.9` flags / 1k words | Noticeable clusters of formulaic transitions, softening pleasantries, or stylistic punctuation. Common in business emails, institutional memos, or lightly edited AI drafts. |
-| **HIGH** | `8.0+` flags / 1k words | Heavy saturation of flagged patterns (1 flag every ~70–120 words). Unedited LLM output routinely scores 10–25+. High-oratory historical prose (such as the Declaration of Independence at 14.2) also trips this threshold due to dense rhetorical triads and double-hyphen pause punctuation. |
+| **LOW PROBABILITY** | `< 25%` | Baseline human writing or isolated stylistic habits (e.g. Declaration of Independence at 14%). |
+| **UNCERTAIN / MIXED** | `25% – 59%` | Moderate presence of AI-associated patterns; editorial review recommended. |
+| **HIGH PROBABILITY** | `60% – 100%` | Multi-category saturation across high-confidence AI boilerplate and vocabulary spikes. |
 
 ## Files
 

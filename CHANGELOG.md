@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented here and mirrored in the in-app Help & About modal.
 
+## [2.0.0] - 2026-09-14
+
+### Added
+- Granular Diagnostic Tiers: weighted all 8 categories across Tier 1 (Stock AI & Corporate filler @ 4.0x), Tier 2 (Lexical & Hedging @ 2.0x), and Tier 3 (Rhetorical triads, Em dashes, Contrast, Markdown @ 0.5x–1.0x).
+- Multi-Signal Corroboration Multiplier ($C$) and Composite AI Likelihood / Certainty percentage (0%–100%) with Low (<25%), Uncertain (25%–59%), and High (60%+) Probability bands.
+- Dual-metric Results UI displaying both AI Certainty / Likelihood and Raw Pattern Density.
+- Transparent calculation breakdown drawer with live mathematical formula, tier-weighted points table, and corroboration multiplier explanation.
+- Comprehensive Help & About modal documentation and Declaration of Independence case-study update.
+
 ## [1.3.0] - 2026-09-14
 
 ### Added
